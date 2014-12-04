@@ -105,7 +105,7 @@ fi
   losetup -o $OFFSET --sizelimit $SIZELIMIT "$LOOP" "$DISK"
   if [ "$BOOTLOADER" = "syslinux" ]; then
     mkfs.vfat -i "$FAT_VOL_ID" "$LOOP"
-  elif [ "$BOOTLOADER" = "bcm2835-bootloader" -o "$BOOTLOADER" = "u-boot" ]; then
+  elif [ "$BOOTLOADER" = "bcm2835-bootloader" -o "$BOOTLOADER" = "u-boot" -o -z "$BOOTLOADER" ]; then
     mkfs.vfat "$LOOP"
   fi
   sync
@@ -207,6 +207,11 @@ elif [ "$BOOTLOADER" = "u-boot" ]; then
         cp "$dtb" "$OE_TMP"
       fi
     done
+
+elif [ -z "$BOOTLOADER" ]; then
+    echo "image: copying files to part1..."
+    cp $TARGET_IMG/$IMAGE_NAME.kernel "$OE_TMP/kernel.img"
+    cp $TARGET_IMG/$IMAGE_NAME.system "$OE_TMP/SYSTEM"
 fi # bootloader
 
 # unmount part1
