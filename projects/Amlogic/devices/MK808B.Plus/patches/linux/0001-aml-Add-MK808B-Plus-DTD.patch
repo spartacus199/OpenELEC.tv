@@ -1,7 +1,7 @@
 From f3d44155bd07bce1ba5c5a911221c6e13b12c221 Mon Sep 17 00:00:00 2001
 From: kszaq <kszaquitto@gmail.com>
 Date: Thu, 8 Jan 2015 09:45:32 +0100
-Subject: [PATCH] [aml] Add MK808B Plus DTD
+Subject: [PATCH 1/2] [aml] Add MK808B Plus DTD
 
 ---
  arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd | 1923 ++++++++++++++++++++++
@@ -1938,5 +1938,5 @@ index 0000000..3776d8e
 +}; /* end of / */
 +
 -- 
-2.2.1
+1.9.1
 
