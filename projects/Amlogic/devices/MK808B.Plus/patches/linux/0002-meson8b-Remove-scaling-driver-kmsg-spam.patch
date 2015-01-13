@@ -1,7 +1,7 @@
 From 59a7a68c23fe93f099038b320ed01674a040a54c Mon Sep 17 00:00:00 2001
 From: kszaq <kszaquitto@gmail.com>
 Date: Fri, 9 Jan 2015 20:07:20 +0100
-Subject: [PATCH 2/2] [meson8b] Remove scaling driver kmsg spam
+Subject: [PATCH] [meson8b] Remove scaling driver kmsg spam
 
 ---
  arch/arm/mach-meson8b/clock.c | 8 ++++----
