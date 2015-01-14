@@ -1,19 +1,19 @@
-From f3d44155bd07bce1ba5c5a911221c6e13b12c221 Mon Sep 17 00:00:00 2001
+From 2b9348ebc96eb1dacd026c112390fb8ca7dfc690 Mon Sep 17 00:00:00 2001
 From: kszaq <kszaquitto@gmail.com>
 Date: Thu, 8 Jan 2015 09:45:32 +0100
 Subject: [PATCH] [aml] Add MK808B Plus DTD
 
 ---
- arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd | 1923 ++++++++++++++++++++++
- 1 file changed, 1923 insertions(+)
+ arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd | 1925 ++++++++++++++++++++++
+ 1 file changed, 1925 insertions(+)
  create mode 100755 arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd
 
 diff --git a/arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd b/arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd
 new file mode 100755
-index 0000000..3776d8e
+index 0000000..002983c
 --- /dev/null
 +++ b/arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd
-@@ -0,0 +1,1923 @@
+@@ -0,0 +1,1925 @@
 +/dts-v1/;
 +/// ***************************************************************************************\n
 +//$$ PROJECT="meson8b"
@@ -751,7 +751,7 @@ index 0000000..3776d8e
 +//$$ L2 PROP_U32 16*3 = "dvfs_table"
 +        vcck_dvfs {
 +            dvfs_id     = <1>;                                  /** must be value of (1 << n)            */
-+            table_count = <12>;                                 /** must be correct count for dvfs_table */
++            table_count = <13>;                                 /** must be correct count for dvfs_table */
 +            dvfs_table  = <
 +            /* NOTE: frequent in this table must be ascending order */
 +            /* frequent(Khz)    min_uV      max_uV                  */
@@ -765,8 +765,9 @@ index 0000000..3776d8e
 +                 816000         900000      900000
 +                1008000         920000      920000
 +                1200000         970000      970000
-+                1320000        1050000     1050000
++                1320000        1100000     1100000
 +                1488000        1100000     1100000
++                1536000        1140000     1140000
 +            >;
 +        };
 +    };
@@ -1503,6 +1504,7 @@ index 0000000..3776d8e
 +//$$ L2 PROP_STR = "status"
 +    cpufreq-meson{
 +        compatible = "amlogic,cpufreq-meson";
++        syspll_fixed;
 +        status = "okay";
 +    };
 +
