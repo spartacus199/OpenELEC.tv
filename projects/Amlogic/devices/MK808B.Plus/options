@@ -1,6 +1,9 @@
 # Optimize for Cortex-A5
   TARGET_CPU="cortex-a5"
 
+# Add Bluetooth firmware
+  FIRMWARE="$FIRMWARE brcmfmac_sdio-firmware"
+
 # Kernel extra targets to build
   KERNEL_UBOOT_EXTRA_TARGET="meson8b_mk808bplus.dtd meson8b_mk808bplus.dtb"
 
