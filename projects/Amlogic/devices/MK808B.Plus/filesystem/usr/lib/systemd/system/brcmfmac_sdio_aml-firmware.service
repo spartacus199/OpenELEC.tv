@@ -5,7 +5,7 @@ ConditionPathExists=/dev/ttyS2
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/sh -c "echo 0 > /sys/class/rfkill/rfkill0/state; sleep 1; echo 1 > /sys/class/rfkill/rfkill0/state; /usr/bin/brcm_patchram_plus --patchram /lib/firmware/brcm/BCM20702.hcd --baudrate 3000000 --enable_hci --use_baudrate_for_download --tosleep 15000 --no2bytes /dev/ttyS2"
+ExecStart=/bin/sh -c "echo 0 > /sys/class/rfkill/rfkill0/state; sleep 1; echo 1 > /sys/class/rfkill/rfkill0/state; /usr/bin/brcm_patchram_plus --patchram /lib/firmware/brcm/bcm20710a1.hcd --baudrate 3000000 --enable_hci --use_baudrate_for_download --tosleep 15000 --no2bytes /dev/ttyS2"
 
 [Install]
 WantedBy=bluetooth.target
