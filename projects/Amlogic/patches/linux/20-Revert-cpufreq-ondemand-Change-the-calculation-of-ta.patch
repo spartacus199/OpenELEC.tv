@@ -1,8 +1,8 @@
-From 852f6b71bbab2d22913223946c20e0ff94cc2b75 Mon Sep 17 00:00:00 2001
+From 2d7c926abeebc6f8d0158a4d5c67dd385b593a16 Mon Sep 17 00:00:00 2001
 From: kszaq <kszaquitto@gmail.com>
 Date: Mon, 19 Jan 2015 10:11:06 +0100
-Subject: [PATCH] Revert "cpufreq: ondemand: Change the calculation of target
- frequency"
+Subject: [PATCH] Revert "cpufreq: ondemand: Change the calculation of
+ target frequency"
 
 This reverts commit cb56f48b2b396110c20f5ffea5e8d25a98e49df4.
 
