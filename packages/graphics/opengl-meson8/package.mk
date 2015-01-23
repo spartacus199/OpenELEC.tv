@@ -17,17 +17,17 @@
 ################################################################################
 
 PKG_NAME="opengl-meson8"
-PKG_VERSION="r4p0-01"
+PKG_VERSION="r4p1"
 PKG_REV="1"
 PKG_ARCH="arm"
 PKG_LICENSE="nonfree"
 PKG_SITE="http://www.arm.com/products/multimedia/mali-graphics-hardware/mali-450-mp.php"
-PKG_URL="https://dl.dropboxusercontent.com/u/18902170/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_URL="https://github.com/kszaq/$PKG_NAME/releases/download/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="graphics"
-PKG_SHORTDESC="opengl-meson6: OpenGL-ES libraries for Mali 450 GPUs"
-PKG_LONGDESC="opengl-meson6: OpenGL-ES libraries for Mali 450 GPUs"
+PKG_SHORTDESC="opengl-meson8: OpenGL-ES libraries for Mali 450 GPUs"
+PKG_LONGDESC="opengl-meson8: OpenGL-ES libraries for Mali 450 GPUs"
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
