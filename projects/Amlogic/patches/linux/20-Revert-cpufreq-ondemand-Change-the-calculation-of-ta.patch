@@ -1,4 +1,4 @@
-From 2d7c926abeebc6f8d0158a4d5c67dd385b593a16 Mon Sep 17 00:00:00 2001
+From e033488e7272e60682301251db8b737360bbe957 Mon Sep 17 00:00:00 2001
 From: kszaq <kszaquitto@gmail.com>
 Date: Mon, 19 Jan 2015 10:11:06 +0100
 Subject: [PATCH] Revert "cpufreq: ondemand: Change the calculation of
