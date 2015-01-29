@@ -1,19 +1,19 @@
-From 17f282303b8f53e74ed37a20aaaf0679927689cc Mon Sep 17 00:00:00 2001
+From 0f051e351d1cc1bb8f5f9e8ecb2903237dfaaea1 Mon Sep 17 00:00:00 2001
 From: kszaq <kszaquitto@gmail.com>
 Date: Thu, 8 Jan 2015 09:45:32 +0100
 Subject: [PATCH] [aml] Add MK808B Plus DTD
 
 ---
- arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd | 1939 ++++++++++++++++++++++
- 1 file changed, 1939 insertions(+)
+ arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd | 1953 ++++++++++++++++++++++
+ 1 file changed, 1953 insertions(+)
  create mode 100755 arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd
 
 diff --git a/arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd b/arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd
 new file mode 100755
-index 0000000..4d5c6e5
+index 0000000..420b781
 --- /dev/null
 +++ b/arch/arm/boot/dts/amlogic/meson8b_mk808bplus.dtd
-@@ -0,0 +1,1939 @@
+@@ -0,0 +1,1953 @@
 +/dts-v1/;
 +/// ***************************************************************************************\n
 +//$$ PROJECT="meson8b"
@@ -315,6 +315,20 @@ index 0000000..4d5c6e5
 +		dev_name = "mesonvout";
 +		status = "okay";
 +	};
++
++/// ***************************************************************************************
++///     -       DISP&MM-A/V Amvideocap
++//$$ MODULE = "DISP&MM-Amvideocap"
++//$$ DEVICE="amvideocap"
++//$$ L2 PROP_STR = "status"
++//$$ L3 PROP_U32 4 ="reg"
++        amvideocap{
++                compatible = "amlogic,amvideocap";
++                dev_name = "amvideocap.0";
++                status = "okay";
++                reserve-memory = <0x00600000>;//1920*1088*3
++                reserve-iomap = "true";
++        };
 +
 +/// ***************************************************************************************
 +///	-	RTC
