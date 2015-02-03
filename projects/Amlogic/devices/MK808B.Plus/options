@@ -16,5 +16,3 @@
 
 # OpenGL-ES implementation to use (no / bcm2835-driver / opengl-meson6 / opengl-meson8)
   OPENGLES="opengl-meson8"
-
-  EXTRA_DEPS_PKG="rng-tools"
