@@ -1,9 +1,9 @@
 diff --git a/arch/arm/boot/dts/amlogic/meson8b_mxq.dtd b/arch/arm/boot/dts/amlogic/meson8b_mxq.dtd
 new file mode 100644
-index 0000000..f5e0008
+index 0000000..e5dec61
 --- /dev/null
 +++ b/arch/arm/boot/dts/amlogic/meson8b_mxq.dtd
-@@ -0,0 +1,1954 @@
+@@ -0,0 +1,1943 @@
 +/dts-v1/;
 +/// ***************************************************************************************\n
 +//$$ PROJECT="meson8b"
@@ -934,8 +934,6 @@ index 0000000..f5e0008
 +    audio_spdif_codec{
 +        compatible = "amlogic,aml-spdif-codec";
 +        dev_name = "spdif-dit.0";
-+        pinctrl-names = "aml_audio_spdif";
-+        pinctrl-0 = <&audio_spdif_pins>;
 +        status = "okay";
 +    };
 +
@@ -1472,11 +1470,11 @@ index 0000000..f5e0008
 +//$$ L2 PROP_U32 = "ao_cec"
 +        vend_data: vend_data{
 +            vendor_name = "Amlogic";           /* Max Chars: 8     */
-+            vendor_id = <0x000000>;                 /* Refer to http://standards.ieee.org/develop/regauth/oui/oui.txt   */
-+            product_desc = "M8 MBox SKTv1";        /* Max Chars: 16    */
-+            cec_osd_string = "Amlogic MBox";        /* Max Chars: 14    */
-+            cec_config = <0x00000f>; /* 4 bytes: use to control cec switch on/off; distinguish between Mbox and Tablet. <0x00000f>:Mbox; <0x000000> or no this value:Tablet*/
-+            ao_cec = <0x000001>; /* switch between ao-cec and ee-cec:: 1: ao-cec; 0: ee-cec */
++            vendor_id = <0x000000>;            /* Refer to http://standards.ieee.org/develop/regauth/oui/oui.txt  $
++            product_desc = "M8 MBox SKTv1";    /* Max Chars: 16    */
++            cec_osd_string = "MBox";           /* Max Chars: 14    */
++            cec_config = <0x00000f>;           /* 4 bytes: use to control cec switch on/off; distinguish between M$
++            ao_cec = <0x000001>;               /* switch between ao-cec and ee-cec:: 1: ao-cec; 0: ee-cec */
 +        };
 +
 +//$$ MATCH "HDMI_pwr-ctrl_match" = <&pwr_ctrl>
@@ -1898,19 +1896,10 @@ index 0000000..f5e0008
 +        audio_pins:audio_pin{
 +            amlogic,setmask=<10 0x78000000
 +                            1 0x80>;
-+            amlogic,clrmask=<10 0x80002008
++            amlogic,clrmask=<10 0x80002000
 +                            1 0x10000
 +                            3 0x40000>;
-+            amlogic,pins = "GPIOAO_8","GPIOAO_9","GPIOAO_10","GPIOAO_11","GPIOAO_13","GPIOY_3";
-+        };
-+//$$ MATCH "Audio_pin_0_match" = "&audio_spdif_pins"
-+//$$ L2 PROP_U32 2 = "amlogic,setmask"
-+//$$ L2 PROP_U32 2 = "amlogic,clrmask"
-+//$$ L2 PROP_STR 1 = "amlogic,pins"
-+        audio_spdif_pins:audio_pin1{
-+            amlogic,setmask=<1 0x80>;       /*spdif_out*/
-+            amlogic,clrmask=<1 0x10000>;    /*spdif_out*/
-+            amlogic,pins ="GPIOY_3";        /*spdif_out*/
++            amlogic,pins = "GPIOAO_8","GPIOAO_9","GPIOAO_10","GPIOAO_11","GPIOY_3";
 +        };
 +//$$ MATCH "Spi_pin_0_match" = "&aml_spi_nor_pins"
 +//$$ L2 PROP_U32 2 = "amlogic,setmask"
