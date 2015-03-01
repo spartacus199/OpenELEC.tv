@@ -19,9 +19,9 @@
 PKG_NAME="linux"
 case "$LINUX" in
   amlogic)
-    LINUX_VERSION="3.10-24553c6"
+    LINUX_VERSION="3.10-a75c687"
     PKG_VERSION="amlogic-$LINUX_VERSION"
-    PKG_URL="https://github.com/codesnake/linux-amlogic/releases/download/$LINUX_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
+    PKG_URL="https://github.com/kszaq/linux-amlogic/releases/download/$LINUX_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
     ;;
   imx6)
     PKG_VERSION="cuboxi-3.14-dc5edb8"

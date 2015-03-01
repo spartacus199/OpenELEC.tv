@@ -11,7 +11,7 @@ index a409586..bd14dd8
 +void meson_pm_poweroff(void);
  #endif
 diff --git a/arch/arm/mach-meson8b/pm.c b/arch/arm/mach-meson8b/pm.c
-index 694bc66..ee5f384 100755
+index 4fdd757..8f8e852 100755
 --- a/arch/arm/mach-meson8b/pm.c
 +++ b/arch/arm/mach-meson8b/pm.c
 @@ -21,6 +21,8 @@
@@ -23,7 +23,7 @@ index 694bc66..ee5f384 100755
  #include <mach/pm.h>
  #include <mach/am_regs.h>
  #include <plat/sram.h>
-@@ -34,7 +36,7 @@
+@@ -35,7 +37,7 @@
  #ifdef CONFIG_MESON_TRUSTZONE
  #include <mach/meson-secure.h>
  #endif
@@ -32,15 +32,15 @@ index 694bc66..ee5f384 100755
  #ifdef CONFIG_SUSPEND_WATCHDOG
  #include <mach/watchdog.h>
  #endif /* CONFIG_SUSPEND_WATCHDOG */
-@@ -46,7 +48,6 @@
- static struct early_suspend early_suspend;
- static int early_suspend_flag = 0;
+@@ -52,7 +54,6 @@ static int early_suspend_flag = 0;
+ #ifdef CONFIG_AO_TRIG_CLK
+ #include "arc_trig_clk.h"
  #endif
 -
  #define ON  1
  #define OFF 0
  
-@@ -225,8 +226,17 @@ void analog_switch(int flag)
+@@ -233,8 +234,17 @@ void analog_switch(int flag)
  #ifdef CONFIG_HAS_EARLYSUSPEND
  static void meson_system_early_suspend(struct early_suspend *h)
  {
@@ -59,7 +59,7 @@ index 694bc66..ee5f384 100755
  	if (pdata->set_exgpio_early_suspend) {
  		pdata->set_exgpio_early_suspend(OFF);
  	}
-@@ -238,11 +248,15 @@ static void meson_system_early_suspend(struct early_suspend *h)
+@@ -246,11 +256,15 @@ static void meson_system_early_suspend(struct early_suspend *h)
  
  static void meson_system_late_resume(struct early_suspend *h)
  {
@@ -76,8 +76,8 @@ index 694bc66..ee5f384 100755
  	}
  }
  #endif
-@@ -323,6 +337,15 @@ static void meson_pm_suspend(void)
- 	//analog_switch(ON);
+@@ -401,6 +415,15 @@ static void meson_pm_suspend(void)
+ #endif
  }
  
 +void meson_pm_poweroff(void)
@@ -92,7 +92,7 @@ index 694bc66..ee5f384 100755
  static int meson_pm_prepare(void)
  {
  	  printk(KERN_INFO "enter meson_pm_prepare!\n");
-@@ -382,6 +405,7 @@ static struct meson_pm_config aml_pm_pdata = {
+@@ -460,6 +483,7 @@ static struct meson_pm_config aml_pm_pdata = {
  
  static int __init meson_pm_probe(struct platform_device *pdev)
  {
@@ -100,7 +100,7 @@ index 694bc66..ee5f384 100755
  	printk(KERN_INFO "enter meson_pm_probe!\n");
  #ifdef CONFIG_HAS_EARLYSUSPEND
  	early_suspend.level = EARLY_SUSPEND_LEVEL_DISABLE_FB;
-@@ -389,6 +413,14 @@ static int __init meson_pm_probe(struct platform_device *pdev)
+@@ -467,6 +491,14 @@ static int __init meson_pm_probe(struct platform_device *pdev)
  	early_suspend.resume = meson_system_late_resume;
  	register_early_suspend(&early_suspend);
  #endif
