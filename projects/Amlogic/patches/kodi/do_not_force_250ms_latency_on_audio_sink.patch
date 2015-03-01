@@ -1,8 +1,17 @@
+From d1aca75d6727876492436b2a194815761f40c45f Mon Sep 17 00:00:00 2001
+From: "Chris \"Koying\" Browet" <cbro@semperpax.com>
+Date: Fri, 2 Jan 2015 12:43:50 +0100
+Subject: [PATCH] [aml] do not force 250ms latency on audio sink
+
+---
+ xbmc/cores/AudioEngine/Sinks/AESinkAUDIOTRACK.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
 diff --git a/xbmc/cores/AudioEngine/Sinks/AESinkAUDIOTRACK.cpp b/xbmc/cores/AudioEngine/Sinks/AESinkAUDIOTRACK.cpp
-index 9aef73f..abc072b 100644
+index 6673d8e..81c9e8a 100644
 --- a/xbmc/cores/AudioEngine/Sinks/AESinkAUDIOTRACK.cpp
 +++ b/xbmc/cores/AudioEngine/Sinks/AESinkAUDIOTRACK.cpp
-@@ -324,10 +324,12 @@ void CAESinkAUDIOTRACK::GetDelay(AEDelayStatus& status)
+@@ -322,10 +322,12 @@ void CAESinkAUDIOTRACK::GetDelay(AEDelayStatus& status)
  
  double CAESinkAUDIOTRACK::GetLatency()
  {
