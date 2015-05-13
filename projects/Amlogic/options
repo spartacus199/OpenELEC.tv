@@ -257,7 +257,7 @@
   LCD_DRIVER="none"
 
 # Modules to install in initramfs for early boot
-  INITRAMFS_MODULES="softcursor bitblit font fbcon"
+  INITRAMFS_MODULES=""
 
 # Support for partitioning and formating disks in initramfs (yes / no)
 # This adds support for parted and mkfs.ext3/4 to initramfs for OEM usage
