@@ -1,0 +1,11 @@
+[Unit]
+Description=Broadcom sdio firmware update for %I
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/bin/sh -c "echo 0 > /sys/class/rfkill/rfkill0/state ; sleep 1; \
+                      echo 1 > /sys/class/rfkill/rfkill0/state ; sleep 1; \
+          /usr/bin/brcm_patchram_plus --patchram /lib/firmware/brcm/bcm20710a1.hcd --baudrate 3000000 \
+                                      --enable_hci --enable_lpm --use_baudrate_for_download --tosleep 50000 \
+                                      --no2bytes /dev/ttyS2"
