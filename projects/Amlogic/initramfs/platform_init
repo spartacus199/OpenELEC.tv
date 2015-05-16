@@ -73,3 +73,6 @@ if [ -n "$scaling_max_freq" ]; then
   echo "$scaling_max_freq" > "$cpufreq/scaling_max_freq"
   echo "$scaling_max_freq" > "$cpufreq/scaling_dflt_freq"
 fi
+
+# Black fb1 to prevent static noise
+echo 0 > /sys/class/graphics/fb1/blank
