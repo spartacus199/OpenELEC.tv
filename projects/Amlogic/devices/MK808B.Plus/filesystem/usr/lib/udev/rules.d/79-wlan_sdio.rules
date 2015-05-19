@@ -1,0 +1,13 @@
+################################################################################
+# udev rules file for wlan_sdio
+################################################################################
+
+ACTION!="add", GOTO="end"
+
+### Broadcom WLAN device
+SUBSYSTEMS=="sdio", ATTRS{vendor}=="0x02d0", RUN+="/sbin/modprobe dhd"
+
+### Realtek 8723BS WLAN device
+SUBSYSTEMS=="sdio", ATTRS{vendor}=="0x024c", ATTRS{device}=="0xb723", RUN+="/sbin/modprobe 8723bs"
+
+LABEL="end"
