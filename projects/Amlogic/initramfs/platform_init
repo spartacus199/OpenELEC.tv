@@ -43,6 +43,9 @@ echo "$hdmimode" > /sys/class/display/mode
 # Enable framebuffer device
 echo 0 > /sys/class/graphics/fb0/blank
 
+# Blank fb1 to prevent static noise
+echo 1 > /sys/class/graphics/fb1/blank
+
 # Disable framebuffer scaling
 echo 0 > /sys/class/graphics/fb0/free_scale
 
@@ -73,6 +76,3 @@ if [ -n "$scaling_max_freq" ]; then
   echo "$scaling_max_freq" > "$cpufreq/scaling_max_freq"
   echo "$scaling_max_freq" > "$cpufreq/scaling_dflt_freq"
 fi
-
-# Black fb1 to prevent static noise
-echo 0 > /sys/class/graphics/fb1/blank
