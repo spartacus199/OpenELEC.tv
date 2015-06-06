@@ -6,6 +6,7 @@ ACTION!="add", GOTO="end"
 SUBSYSTEMS=="sdio", ATTRS{vendor}=="0x02d0", ATTRS{device}=="0x4329", GOTO="imx"
 SUBSYSTEMS=="sdio", ATTRS{vendor}=="0x02d0", ATTRS{device}=="0x4330", GOTO="imx"
 SUBSYSTEMS=="sdio", ATTRS{vendor}=="0x02d0", ATTRS{device}=="0xa962", GOTO="aml"
+SUBSYSTEMS=="sdio", ATTRS{vendor}=="0x02d0", ATTRS{device}=="0xa9a6", GOTO="aml"
 GOTO="end"
 
 LABEL="imx"
@@ -24,6 +25,10 @@ LABEL="aml"
 ### Broadcom bcm43362/bcm20710a1 bluetooth device
 ATTRS{vendor}=="0x02d0", ATTRS{device}=="0xa962", \
   ENV{brcm_device}="bcm20710a1"
+
+### Broadcom bcm4343a0 bluetooth device
+ATTRS{vendor}=="0x02d0", ATTRS{device}=="0xa9a6", \
+  ENV{brcm_device}="4343a0"
 
 ENV{brcm_device}=="?*", ACTION=="add", \
   TAG+="systemd", ENV{SYSTEMD_WANTS}+="brcmfmac_sdio-firmware-aml@$env{brcm_device}.service"
