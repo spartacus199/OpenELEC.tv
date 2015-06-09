@@ -1,0 +1,81 @@
+From 1c02e9517ab4e8e9f45be0abc3906ae99e919036 Mon Sep 17 00:00:00 2001
+From: kszaq <kszaquitto@gmail.com>
+Date: Tue, 9 Jun 2015 14:14:42 +0200
+Subject: [PATCH] [aml/wifi] Add a dummy WiFi driver
+
+Loading the module toggles WiFi power and triggers SDIO bus rescan.
+Useful when including both Broadcom and Realtek drivers in kernel.
+---
+ drivers/amlogic/wifi/Kconfig      |  5 +++++
+ drivers/amlogic/wifi/Makefile     |  1 +
+ drivers/amlogic/wifi/wifi_dummy.c | 32 ++++++++++++++++++++++++++++++++
+ 3 files changed, 38 insertions(+)
+ create mode 100644 drivers/amlogic/wifi/wifi_dummy.c
+
+diff --git a/drivers/amlogic/wifi/Kconfig b/drivers/amlogic/wifi/Kconfig
+index c4011ed..c056701 100755
+--- a/drivers/amlogic/wifi/Kconfig
++++ b/drivers/amlogic/wifi/Kconfig
+@@ -8,6 +8,11 @@ config AM_WIFI_SD_MMC
+ 	depends on AM_WIFI
+ 	default n
+ 
++config AM_WIFI_DUMMY
++	tristate "Amlogic SDIO WiFi turn on and rescan module"
++	depends on AM_WIFI_SD_MMC
++	default m
++
+ config DHD_USE_STATIC_BUF
+     bool "broadcom wifi static buff support"
+     default n
+diff --git a/drivers/amlogic/wifi/Makefile b/drivers/amlogic/wifi/Makefile
+index 8c483f6..b4e8391 100755
+--- a/drivers/amlogic/wifi/Makefile
++++ b/drivers/amlogic/wifi/Makefile
+@@ -1,4 +1,5 @@
+ obj-$(CONFIG_AM_WIFI_SD_MMC) +=  wifi_dt.o
++obj-$(CONFIG_AM_WIFI_DUMMY) += wifi_dummy.o
+ obj-$(CONFIG_AM_WIFI) += wifi_power.o
+ obj-$(CONFIG_DHD_USE_STATIC_BUF) += dhd_static_buf.o
+ obj-$(CONFIG_RTL8189ES) += rtl8189ES/
+diff --git a/drivers/amlogic/wifi/wifi_dummy.c b/drivers/amlogic/wifi/wifi_dummy.c
+new file mode 100644
+index 0000000..460e4dd
+--- /dev/null
++++ b/drivers/amlogic/wifi/wifi_dummy.c
+@@ -0,0 +1,32 @@
++#include <linux/delay.h>
++#include <linux/module.h>
++#include <linux/kernel.h>
++#include <linux/init.h>
++
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("kszaq");
++MODULE_DESCRIPTION("Amlogic WiFi power on and SDIO rescan module");
++
++extern void wifi_setup_dt(void);
++extern void extern_wifi_set_enable(int);
++extern void sdio_reinit(void);
++
++static int __init wifi_dummy_init(void)
++{
++	printk(KERN_INFO "Triggered SDIO WiFi power on and bus rescan.\n");
++	wifi_setup_dt();
++	msleep(300);
++	extern_wifi_set_enable(0);
++	msleep(300);
++	extern_wifi_set_enable(1);
++	sdio_reinit();
++	return 0;
++}
++
++static void __exit wifi_dummy_cleanup(void)
++{
++    printk(KERN_INFO "Cleaning up module.\n");
++}
++
++module_init(wifi_dummy_init);
++module_exit(wifi_dummy_cleanup);
+-- 
+1.8.3.1
+
