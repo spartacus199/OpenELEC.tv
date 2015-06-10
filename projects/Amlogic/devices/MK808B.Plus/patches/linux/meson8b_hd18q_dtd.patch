@@ -1,9 +1,9 @@
 diff --git a/arch/arm/boot/dts/amlogic/meson8b_hd18q.dtd b/arch/arm/boot/dts/amlogic/meson8b_hd18q.dtd
 new file mode 100644
-index 0000000..30eeb32
+index 0000000..2d2a168
 --- /dev/null
 +++ b/arch/arm/boot/dts/amlogic/meson8b_hd18q.dtd
-@@ -0,0 +1,1945 @@
+@@ -0,0 +1,1946 @@
 +/dts-v1/;
 +/// ***************************************************************************************\n
 +//$$ PROJECT="meson8b"
@@ -1316,10 +1316,10 @@ index 0000000..30eeb32
 +		compatible = "amlogic-thermal";
 +		#thermal-cells=<7>;
 +		dev_name = "aml_thermal";
-+        trip_point=<85 1488001 1488001 511 511 3 2
-+                    95 1200001 1200001 435 435 2 2
-+                    105  800001  800001 328 328 1 1
-+                    110 0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffffffff>;
++        trip_point=<70 1488001 1488001 511 511 3 2
++                    80 1200001 1200001 435 435 2 2
++                    90  800001  800001 328 328 1 1
++                    260 0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffffffff>;
 +		cpu_cali_a=<0>;
 +		idle_interval=<1000>;
 +        use_virtual_thermal;
@@ -1513,6 +1513,7 @@ index 0000000..30eeb32
 +//$$ L2 PROP_STR = "status"
 +    cpufreq-meson{
 +        compatible = "amlogic,cpufreq-meson";
++        syspll_fixed;
 +        status = "okay";
 +    };
 +
