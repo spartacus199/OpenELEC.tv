@@ -1,0 +1,51 @@
+From daa744261624f06f34c862c997aa284f49fa887b Mon Sep 17 00:00:00 2001
+From: kszaq <kszaquitto@gmail.com>
+Date: Wed, 24 Jun 2015 22:58:13 +0200
+Subject: [PATCH] proc: make cmdline writable
+
+Picked from https://github.com/CyanogenMod/android_kernel_samsung_d2/commit/04e22d21aa9f660f26d72709c2ca8e93e0e5938c
+---
+ fs/proc/cmdline.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/fs/proc/cmdline.c b/fs/proc/cmdline.c
+index 82676e3..9f5081a 100644
+--- a/fs/proc/cmdline.c
++++ b/fs/proc/cmdline.c
+@@ -3,6 +3,8 @@
+ #include <linux/proc_fs.h>
+ #include <linux/seq_file.h>
+ 
++#include <asm/uaccess.h>    /* copy_from_user */
++
+ static int cmdline_proc_show(struct seq_file *m, void *v)
+ {
+ 	seq_printf(m, "%s\n", saved_command_line);
+@@ -14,9 +16,24 @@ static int cmdline_proc_open(struct inode *inode, struct file *file)
+ 	return single_open(file, cmdline_proc_show, NULL);
+ }
+ 
++static int cmdline_proc_write(struct file *file, const char __user *buf,
++				size_t len, loff_t *ppos)
++{
++	char str[1000];
++	if (copy_from_user(str, buf, len)) {
++	   printk( KERN_INFO "[cmdline] copy_from_user failed.\n");
++	   return -EFAULT;
++	}
++	str[len] = '\0';
++	strcpy(saved_command_line, str);
++
++	return len;
++}
++
+ static const struct file_operations cmdline_proc_fops = {
+ 	.open		= cmdline_proc_open,
+ 	.read		= seq_read,
++	.write		= cmdline_proc_write,
+ 	.llseek		= seq_lseek,
+ 	.release	= single_release,
+ };
+-- 
+1.8.3.1
+
