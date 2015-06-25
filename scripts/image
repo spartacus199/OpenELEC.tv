@@ -333,6 +333,36 @@ fi
     # create release tarball
       tar cf $TARGET_IMG/$IMAGE_NAME.tar -C target $IMAGE_NAME
 
+    # create bootloader update package for Amlogic project
+      INSTALL_SRC_DIR="$PROJECT_DIR/$PROJECT/devices/$DEVICE/install"
+      if [ -f "$INSTALL_SRC_DIR/update-binary" -a -f "$INSTALL_SRC_DIR/updater-script-bootloader" -a -f "$INSTALL_SRC_DIR/files/bootloader.img" ]; then
+        echo "Creating Amlogic bootloader update package"
+
+        AML_PKG_DIR="$RELEASE_DIR/ampl-pkg-bootloader"
+
+        # create package directory
+        mkdir -p "$AML_PKG_DIR"
+
+        # copy update-binary, updater-script and bootloader.img
+        META_INF_DIR="$AML_PKG_DIR/META-INF/com/google/android"
+        mkdir -p "$META_INF_DIR"
+        cp $INSTALL_SRC_DIR/update-binary $META_INF_DIR
+        cp $INSTALL_SRC_DIR/updater-script-bootloader $META_INF_DIR/updater-script
+	cp $INSTALL_SRC_DIR/files/bootloader.img $AML_PKG_DIR
+
+        # create the update package
+        pushd "$AML_PKG_DIR" > /dev/null
+        zip -rq update.zip *
+
+        # sign the update package
+        echo "Signing the update package"
+        mkdir -p sign
+        SIGNAPK_DIR="$ROOT/tools/signapk"
+        java -Xmx1024m -jar $SIGNAPK_DIR/signapk.jar -w $SIGNAPK_DIR/testkey.x509.pem $SIGNAPK_DIR/testkey.pk8 update.zip $TARGET_IMG/$IMAGE_NAME-bootloader.zip
+
+        popd > /dev/null
+      fi
+
     # create image files if requested
       if [ "$1" = "mkimage" ]; then
         # projects can set KERNEL_NAME (kernel.img)
@@ -358,6 +388,7 @@ fi
           TOOLCHAIN="$TOOLCHAIN" \
           TARGET_IMG="$TARGET_IMG" \
           IMAGE_NAME="$IMAGE_NAME" \
+          INSTALL_SRC_DIR="$INSTALL_SRC_DIR" \
           BOOTLOADER="$BOOTLOADER" \
           KERNEL_NAME="$KERNEL_NAME" \
           RELEASE_DIR="$RELEASE_DIR" \
