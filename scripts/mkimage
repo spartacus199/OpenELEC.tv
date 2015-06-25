@@ -212,6 +212,11 @@ elif [ -z "$BOOTLOADER" ]; then
     echo "image: copying files to part1..."
     cp $TARGET_IMG/$IMAGE_NAME.kernel "$OE_TMP/kernel.img"
     cp $TARGET_IMG/$IMAGE_NAME.system "$OE_TMP/SYSTEM"
+    if [ -f "$INSTALL_SRC_DIR/files/recovery.img" -a -f "$TARGET_IMG/$IMAGE_NAME-bootloader.zip" ]; then
+        cp $INSTALL_SRC_DIR/files/recovery.img $OE_TMP
+        cp $TARGET_IMG/$IMAGE_NAME-bootloader.zip $OE_TMP
+        echo --update_package=/sdcard/$IMAGE_NAME-bootloader.zip > "$OE_TMP/factory_update_param.aml"
+    fi
 fi # bootloader
 
 # unmount part1
