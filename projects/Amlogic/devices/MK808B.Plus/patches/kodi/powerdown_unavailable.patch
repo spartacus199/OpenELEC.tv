@@ -1,0 +1,13 @@
+diff --git a/xbmc/powermanagement/linux/LogindUPowerSyscall.cpp b/xbmc/powermanagement/linux/LogindUPowerSyscall.cpp
+index 5a97fe6..369e790 100644
+--- a/xbmc/powermanagement/linux/LogindUPowerSyscall.cpp
++++ b/xbmc/powermanagement/linux/LogindUPowerSyscall.cpp
+@@ -50,7 +50,7 @@ CLogindUPowerSyscall::CLogindUPowerSyscall()
+   if (!m_hasUPower)
+     CLog::Log(LOGINFO, "LogindUPowerSyscall - UPower not found, battery information will not be available");
+
+-  m_canPowerdown = LogindCheckCapability("CanPowerOff");
++  m_canPowerdown = false;
+   m_canReboot    = LogindCheckCapability("CanReboot");
+   m_canHibernate = LogindCheckCapability("CanHibernate");
+   m_canSuspend   = LogindCheckCapability("CanSuspend");
