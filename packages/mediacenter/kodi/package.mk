@@ -431,6 +431,7 @@ post_makeinstall_target() {
       ln -sf cputemp $INSTALL/usr/bin/gputemp
     cp $PKG_DIR/scripts/setwakeup.sh $INSTALL/usr/bin
     cp tools/EventClients/Clients/Kodi\ Send/kodi-send.py $INSTALL/usr/bin/kodi-send
+    cp $PKG_DIR/scripts/rebootfromnand.sh $INSTALL/usr/bin
 
   if [ ! "$DISPLAYSERVER" = "x11" ]; then
     rm -rf $INSTALL/usr/lib/kodi/kodi-xrandr
