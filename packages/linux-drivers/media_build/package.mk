@@ -19,14 +19,13 @@
 ################################################################################
 
 PKG_NAME="media_build"
-PKG_VERSION="26b16ec"
-MEDIA_BUILD_VERSION="2014-11-25-504febc"
+PKG_VERSION="66f4030"
+MEDIA_BUILD_VERSION="2014-09-26-214635f"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://git.linuxtv.org/media_build.git"
-#PKG_URL="$DISTRO_SRC/${PKG_NAME}-${PKG_VERSION}.tar.xz"
-PKG_URL="http://git.linuxtv.org/cgit.cgi/media_build.git/snapshot/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="$DISTRO_SRC/${PKG_NAME}-${PKG_VERSION}.tar.xz"
 PKG_DEPENDS_TARGET=""
 PKG_BUILD_DEPENDS_TARGET="toolchain linux"
 PKG_PRIORITY="optional"
