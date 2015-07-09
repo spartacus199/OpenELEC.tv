@@ -19,11 +19,6 @@ unmount("/system");
 
 show_progress(0.300000, 60);
 
-ui_print("Writing recovery");
-write_raw_image(package_extract_file("recovery.img"), "recovery");
-
-show_progress(0.018000, 0);
-
 ui_print("Writing bootloader");
 write_raw_image(package_extract_file("bootloader.img"), "bootloader");
 
