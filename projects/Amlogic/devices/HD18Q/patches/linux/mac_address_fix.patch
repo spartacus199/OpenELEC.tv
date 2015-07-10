@@ -1,17 +1,8 @@
 diff --git a/drivers/amlogic/ethernet/am_net8218.c b/drivers/amlogic/ethernet/am_net8218.c
-index 6ef114b..6448f91 100755
+index 5a76c98..6622c4c 100755
 --- a/drivers/amlogic/ethernet/am_net8218.c
 +++ b/drivers/amlogic/ethernet/am_net8218.c
-@@ -51,6 +51,8 @@
- #ifdef CONFIG_AML1220
- #include <linux/amlogic/aml_pmu.h>
- #endif
-+#include <linux/amlogic/securitykey.h>
-+
- #define MODULE_NAME "ethernet"
- #define DRIVER_NAME "ethernet"
- 
-@@ -912,8 +914,8 @@ void read_mac_from_nand(struct net_device *ndev)
+@@ -907,8 +907,8 @@ void read_mac_from_nand(struct net_device *ndev)
  	u8 mac[ETH_ALEN];
  	char *endp;
  	int j;
@@ -21,7 +12,7 @@ index 6ef114b..6448f91 100755
  	printk("ret = %d\nprint_buff=%s\n", ret, print_buff);
  	if (ret >= 0) {
  		strcpy(ndev->dev_addr, print_buff);
-@@ -927,6 +929,7 @@ void read_mac_from_nand(struct net_device *ndev)
+@@ -922,6 +922,7 @@ void read_mac_from_nand(struct net_device *ndev)
  
  }
  #endif
@@ -29,10 +20,10 @@ index 6ef114b..6448f91 100755
  static int aml_mac_init(struct net_device *ndev)
  {
  	struct am_net_private *np = netdev_priv(ndev);
-@@ -938,7 +941,40 @@ static int aml_mac_init(struct net_device *ndev)
+@@ -933,7 +934,40 @@ static int aml_mac_init(struct net_device *ndev)
  
  	data_dump(ndev->dev_addr, 6);
- #if defined (CONFIG_AML_NAND_KEY) || defined (CONFIG_SECURITYKEY)
+ #ifdef CONFIG_AML_NAND_KEY
 -	read_mac_from_nand(ndev);
 +	char mac_id[ETH_ALEN];
 +
@@ -71,7 +62,7 @@ index 6ef114b..6448f91 100755
  #endif
  	printk("--2--write mac add to:");
  	data_dump(ndev->dev_addr, 6);
-@@ -1663,13 +1699,39 @@ static unsigned char inline chartonum(char c)
+@@ -1623,13 +1657,39 @@ static unsigned char inline chartonum(char c)
   * @param  mac
   */
  /* --------------------------------------------------------------------------*/
