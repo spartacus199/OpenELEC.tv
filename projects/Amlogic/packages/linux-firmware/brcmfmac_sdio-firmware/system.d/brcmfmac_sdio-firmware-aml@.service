@@ -1,0 +1,7 @@
+[Unit]
+Description=Broadcom sdio firmware update for %I
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/usr/bin/brcm_patchram_plus --patchram /lib/firmware/brcm/%I.hcd --baudrate 3000000 --enable_hci --use_baudrate_for_download --tosleep 50000 --no2bytes /dev/ttyS2
