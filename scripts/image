@@ -191,7 +191,7 @@ fi
 
 # copy board related files to filesystem
   if [ -n "$DEVICE" -a -d "$PROJECT_DIR/$PROJECT/devices/$DEVICE/filesystem" ]; then
-    cp -PR $PROJECT_DIR/$PROJECT/devices/$DEVICE/filesystem/* $INSTALL
+    cp -LR $PROJECT_DIR/$PROJECT/devices/$DEVICE/filesystem/* $INSTALL
   fi
 
 # run depmod
