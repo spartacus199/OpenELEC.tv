@@ -69,7 +69,7 @@
   LINUX_NEXT="no"
 
 # SquashFS compression method (gzip / lzo / xz)
-  SQUASHFS_COMPRESSION="lzo"
+  SQUASHFS_COMPRESSION="lz4"
 
 # Mediacenter to use (kodi / no)
   MEDIACENTER="kodi"
