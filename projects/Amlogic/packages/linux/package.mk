@@ -31,7 +31,7 @@ PKG_SHORTDESC="linux26: The Linux kernel 2.6 precompiled kernel binary image and
 PKG_LONGDESC="This package contains a precompiled kernel image and the modules."
 case "$LINUX" in
   amlogic)
-    LINUX_VERSION="3.10-c523a46"
+    LINUX_VERSION="3.10-7224327"
     PKG_VERSION="amlogic-$LINUX_VERSION"
     PKG_URL="https://github.com/kszaq/linux-amlogic/releases/download/$LINUX_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
     ;;
