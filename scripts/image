@@ -391,7 +391,7 @@ fi
       fi
 
     # create WeTek Play (Amlogic) ZIP update and auto-install packages if requested
-      if [ "$1" = "amlpkg" ]; then
+      if [ "$1" = "amlpkg" -o "$1" = "mkimage" ]; then
         echo "Creating Amlogic ZIP update package"
 
         if [ -n "$DEVICE" -a -d "$PROJECT_DIR/$PROJECT/devices/$DEVICE/install" ]; then
