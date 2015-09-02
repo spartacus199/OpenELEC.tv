@@ -47,10 +47,10 @@ index 79622a6..92ccb4f 100755
 -	printk(KERN_INFO "%s\n",__func__);
 +	printk(KERN_INFO "2%s\n",__func__);
 +
-+    ret = amlogic_gpio_direction_output(GPIOAO_1,0,"power_led"); //for power LED
++    ret = amlogic_gpio_direction_output(GPIOAO_3,0,"power_led"); //for power LED
 +        if(ret){
 +            printk("---%s----can not set output pin \n",__func__);
-+            amlogic_gpio_free(GPIOAO_1,"power_led");
++            amlogic_gpio_free(GPIOAO_3,"power_led");
 +        }
 +
 +
@@ -68,7 +68,7 @@ index 79622a6..92ccb4f 100755
  		early_suspend_flag = 0;
 -		printk(KERN_INFO "%s\n",__func__);
 +		printk(KERN_INFO "1%s\n",__func__);
-+        amlogic_set_value(GPIOAO_1,1,"power_led");
++        amlogic_set_value(GPIOAO_3,1,"power_led");
  	}
  }
  #endif
@@ -87,7 +87,7 @@ index 79622a6..92ccb4f 100755
  
 +void meson_pm_poweroff(void)
 +{
-+	amlogic_set_value(GPIOAO_1,0,"power_led");
++	amlogic_set_value(GPIOAO_3,0,"power_led");
 +//	close_hdmi();
 +	aml_write_reg32(P_AO_RTI_STATUS_REG1, 0);
 +	
@@ -110,10 +110,10 @@ index 79622a6..92ccb4f 100755
  	early_suspend.resume = meson_system_late_resume;
  	register_early_suspend(&early_suspend);
  #endif
-+    ret = amlogic_gpio_request_one(GPIOAO_1,GPIOF_OUT_INIT_HIGH,"power_led"); //for power LED
++    ret = amlogic_gpio_request_one(GPIOAO_3,GPIOF_OUT_INIT_HIGH,"power_led"); //for power LED
 +        if(ret){
 +            printk("---%s----can not set output pin \n",__func__);
-+            amlogic_gpio_free(GPIOAO_1,"power_led");
++            amlogic_gpio_free(GPIOAO_3,"power_led");
 +        }else{
 +            printk("---%s----set output pin success\n",__func__);
 +        }
